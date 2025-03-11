@@ -1,0 +1,20 @@
+# Denegar el acceso a carpetas específicas
+<Directory "/js">
+    AllowOverride None
+    Require all denied
+</Directory>
+
+<Directory "/images">
+    AllowOverride None
+    Require all denied
+</Directory>
+
+<Directory "/css">
+    AllowOverride None
+    Require all denied
+</Directory>
+
+# Denegar el acceso al archivo index.html
+<Files "index.html">
+    Require all denied
+</Files>
