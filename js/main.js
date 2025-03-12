@@ -48,6 +48,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
             sessionStorage.setItem('isWaiting', 'true'); // Activar el estado de espera
             setTimeout(() => {
                 sessionStorage.removeItem('isWaiting'); // Restablecer el estado de espera
+                console.log("Wait time has ended."); // Mensaje de depuración
             }, waitTime);
         } else {
             x1y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
@@ -60,7 +61,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
 document.addEventListener("DOMContentLoaded", function() {
     // Verificar el estado de espera al cargar la página
     if (sessionStorage.getItem('isWaiting')) {
-        x1y2z3("Wait", "You need to wait to sendig other followers", "warning", "Okay");
+        x1y2z3("Wait", "You need to wait sending other followers", "warning", "Okay");
     }
 
     document.getElementById("Send").addEventListener("click", function() {
@@ -73,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (sessionStorage.getItem('isWaiting')) {
-            x1y2z3("Wait", "You need to wait to sending other followers", "warning", "Okay");
+            x1y2z3("Wait", "You need to wait to sending others followers", "warning", "Okay");
             return;
         }
 
