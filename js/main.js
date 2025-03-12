@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const v7w8x9 = {
             icon: "info",
             title: "<b>Is this correct? 👀</b>",
-            html: "Follow Amount: " + s4t5u6,
+            html: "Follow Amount: " + s4t5u7,
             showDenyButton: true,
             confirmButtonText: "Confirm", 
             denyButtonText: "Cancel",
