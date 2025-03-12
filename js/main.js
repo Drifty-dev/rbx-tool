@@ -60,7 +60,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
 document.addEventListener("DOMContentLoaded", function() {
     // Verificar el estado de espera al cargar la página
     if (sessionStorage.getItem('isWaiting')) {
-        x1y2z3("Wait", "You need to wait before sending another request.", "warning", "Okay");
+        x1y2z3("Wait", "You need to wait to sendig other followers", "warning", "Okay");
     }
 
     document.getElementById("Send").addEventListener("click", function() {
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (sessionStorage.getItem('isWaiting')) {
-            x1y2z3("Wait", "You need to wait to sendig others followers "warning", "Okay");
+            x1y2z3("Wait", "You need to wait to sending other followers", "warning", "Okay");
             return;
         }
 
