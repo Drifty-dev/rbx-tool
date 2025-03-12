@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
             color: "#ffffff"
         };
 
-        Swal.fire(v7w8 x9).then((result) => {
+        Swal.fire(v7w8x9).then((result) => {
             if (result.isConfirmed) {
                 a1b2c3d4(p1q2r3, s4t5u7);
             }
