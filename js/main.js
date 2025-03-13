@@ -50,7 +50,8 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
         if (response.ok) {
             x1y2y2z3("Success", "Successfully sent.", "success", "Okay");
         } else {
-            x1y2y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
+            const errorData = await response.json();
+            x1y2y2z3("Error", `Failed to send Followers to Roblox Account. ${errorData.errors[0].message}`, "error", "Retry");
         }
     } catch (error) {
         x1y2y2z3("Error", "An error occurred while sending Followers", "error", "Retry");
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
         Swal.fire(v7w8x9).then((result) => {
             if (result.isConfirmed) {
                 a1b2c3d4(p1q2r3, s4t5u7);
- }
+            }
         });
     });
 });
